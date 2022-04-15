@@ -1,10 +1,10 @@
 import React from 'react'
 
 
-const Button = ({symbol, name}) => {
+const Button = ({name, symbol, keyPress}) => {
    
   return (
-    <div onClick={name}>{symbol}</div>
+    <li name={name} onClick={keyPress} >{symbol}</li>
   )
 }
 
