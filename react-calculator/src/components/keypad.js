@@ -6,7 +6,7 @@ const Keypad = ({keyPress}) => {
   return (
     <div>
         <ul id='keypad-container' >
-            <Button name='func' symbol='AC' keyPress={keyPress} />
+            <Button name='clear' symbol='AC' keyPress={keyPress} />
             <Button name='operand' symbol='%' keyPress={keyPress} />
             <Button name='operand' symbol='/' keyPress={keyPress} />
             <Button name='operand' symbol='+' keyPress={keyPress} />
@@ -21,7 +21,7 @@ const Keypad = ({keyPress}) => {
             <Button name='number' symbol='1' keyPress={keyPress} />
             <Button name='number' symbol='2' keyPress={keyPress} />
             <Button name='number' symbol='3' keyPress={keyPress} />
-            <Button name='number' symbol='.' keyPress={keyPress} />
+            <Button name='dot' symbol='.' keyPress={keyPress} />
             <Button name='number' symbol='0' keyPress={keyPress} />
             <Button name='equals' symbol='=' keyPress={keyPress} />
         </ul>
