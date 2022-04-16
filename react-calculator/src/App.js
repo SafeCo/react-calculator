@@ -14,34 +14,6 @@ const [figure, setFigure] = React.useState({
 
 });
 
-// if(operandState == false && symbolType == 'number'){
-//   return{
-//     ...prev,
-//       firstNumber: prev.firstNumber + e.target.innerHTML,
-//       firstNumberSwitch: true
-//   }
-// }else if (operandState == false && symbolType == 'operand'){
-//   return{
-//     ...prev,
-//       operand: e.target.innerHTML,
-//       operandState: true
-//   }
-// } else if (operandState == true && symbolType == 'number'){
-//   return{
-//     ...prev,
-//       secondNumber: e.target.innerHTML,
-//       secondNumberSwitch:true
-//   }
-// } else if (firstNumberSwitch == true && operandState == true && secondNumberSwitch== true && symbolType == 'equals'){
-//   console.log(working)
-//   return{
-//     ...prev,
-//     firstNumberSwitch: true,
-//     operandState: true,
-//     secondNumberSwitch:true,
-//   }
-// }
-
 
 function checkSymbol(e){
   let symbolType = e.target.getAttribute('data-name')
@@ -51,6 +23,7 @@ function checkSymbol(e){
     let second = prev.secondNumber
     let firstS = prev.firstNumberSwitch
     let secondS = prev.secondNumberSwitch
+    let op = prev.operand
     let opS = prev.operandState
 
 
@@ -73,12 +46,15 @@ function checkSymbol(e){
           secondNumberSwitch:true
       }
     } else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
-      console.log("working")
+      let mathResult = 
       return{
-        ...prev,
-        firstNumberSwitch: true,
-        operandState: true,
-        secondNumberSwitch:true,
+        firstNumber: "",
+        firstNumberSwitch: false,
+        operand:"" ,
+        operandState: false,
+        secondNumber:"", 
+        secondNumberSwitch: false,
+        result: "",
       }
     }
   })
