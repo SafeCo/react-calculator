@@ -28,12 +28,20 @@ function checkSymbol(e){
     let op = prev.operand
     let opS = prev.operandState
 
-
     if(opS == false && symbolType == 'number'){
       return{
         ...prev,
           firstNumber: first + e.target.innerHTML,
           firstNumberSwitch: true
+      }
+    }else if (opS == false && symbolType== 'dot' && !first.includes('.')){
+      return{
+        ...prev,
+        firstNumber: first + e.target.innerHTML
+      }
+    }else if (opS == false && symbolType== 'dot' && first.includes('.')){
+      return{
+        ...prev,
       }
     }else if (opS == false && symbolType == 'operand'){
       return{
@@ -46,6 +54,15 @@ function checkSymbol(e){
         ...prev,
           secondNumber: second + e.target.innerHTML,
           secondNumberSwitch:true
+      }
+    }else if (opS == true && symbolType== 'dot' && !second.includes('.')){
+      return{
+        ...prev,
+        secondNumber: second + e.target.innerHTML
+      }
+    }else if (opS == true && symbolType== 'dot' && second.includes('.')){
+      return{
+        ...prev,
       }
     } else if(opS == true && symbolType== 'operand'){
         return{
