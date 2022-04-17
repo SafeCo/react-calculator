@@ -13,7 +13,6 @@ const [figure, setFigure] = React.useState({
   result:"0",
   currentOperation: "",
   previousOperation: "",
-
 });
 
 
@@ -68,7 +67,17 @@ function checkSymbol(e){
         return{
           ...prev
         }
-    } else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
+    }else if(symbolType== 'delete'){
+      return{
+        firstNumber: "",
+        firstNumberSwitch: false,
+        operand:"" ,
+        operandState: false,
+        secondNumber:"", 
+        secondNumberSwitch: false,
+        result: "0",
+      }
+  } else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
       let num1 = parseFloat(first) 
       let num2= parseFloat(second)
       let evaluate = sum()
