@@ -67,7 +67,7 @@ function checkSymbol(e){
         return{
           ...prev
         }
-    }else if(symbolType== 'delete'){
+    }else if(symbolType== 'clear'){
       return{
         firstNumber: "",
         firstNumberSwitch: false,
@@ -77,7 +77,25 @@ function checkSymbol(e){
         secondNumberSwitch: false,
         result: "0",
       }
-  } else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
+  } else if(symbolType== 'delete'){
+    if(!second == ""){
+      return{
+        ...prev,
+        secondNumber: second.slice(0, second.length - 1)
+      }
+    }else if(!op == ""){
+      return{
+        ...prev,
+        operand: "",
+        operandState:""
+      }
+    }else if(!first == ""){
+      return{
+        ...prev,
+        firstNumber: first.slice(0, first.length - 1)
+      }
+    }
+} else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
       let num1 = parseFloat(first) 
       let num2= parseFloat(second)
       let evaluate = sum()
