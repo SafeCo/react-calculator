@@ -18,7 +18,7 @@ const [figure, setFigure] = React.useState({
 
 function checkSymbol(e){
   let symbolType = e.target.getAttribute('data-name')
-  console.log(symbolType)
+
   setFigure((prev)=>{
     let first = prev.firstNumber
     let second = prev.secondNumber
@@ -36,15 +36,21 @@ function checkSymbol(e){
     }else if (opS == false && symbolType== 'dot' && !first.includes('.')){
       return{
         ...prev,
-        firstNumber: first + e.target.innerHTML
+        firstNumber: !first == "" ? first + e.target.innerHTML : "0" + e.target.innerHTML,
+        firstNumberSwitch: true
       }
     }else if (opS == false && symbolType== 'dot' && first.includes('.')){
+      return{
+        ...prev,
+      }
+    }else if (opS == false && symbolType == 'operand' && firstS == false){
       return{
         ...prev,
       }
     }else if (opS == false && symbolType == 'operand'){
       return{
         ...prev,
+          firstNumber: first == "0."? "0": first,
           operand: e.target.innerHTML,
           operandState: true
       }
@@ -57,7 +63,7 @@ function checkSymbol(e){
     }else if (opS == true && symbolType== 'dot' && !second.includes('.')){
       return{
         ...prev,
-        secondNumber: second + e.target.innerHTML
+        secondNumber: !second == ""? second + e.target.innerHTML : "0" + e.target.innerHTML
       }
     }else if (opS == true && symbolType== 'dot' && second.includes('.')){
       return{
@@ -77,7 +83,7 @@ function checkSymbol(e){
         secondNumberSwitch: false,
         result: "0",
       }
-  } else if(symbolType== 'delete'){
+  }else if(symbolType== 'delete'){
     if(!second == ""){
       return{
         ...prev,
@@ -94,12 +100,21 @@ function checkSymbol(e){
         ...prev,
         firstNumber: first.slice(0, first.length - 1)
       }
+    }else{
+      return{
+        ...prev
+      }
     }
-} else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
+  } else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
+    
       let num1 = parseFloat(first) 
-      let num2= parseFloat(second)
+      let num2 =  ()=>{if(second == "0."){
+        console.log("working")
+        return parseFloat("0")
+      }}
       let evaluate = sum()
       function sum (){
+        console.log("app js:"+ first)
         if(op == '+'){
           return num1 + num2
         }else if(op == '-'){
