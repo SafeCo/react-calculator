@@ -11,7 +11,7 @@ const [figure, setFigure] = React.useState({
   secondNumber:"", 
   secondNumberSwitch: false,
   result:"0",
-  currentOperation: "",
+  currentOperation: "" ,
   previousOperation: "",
 });
 
@@ -36,7 +36,7 @@ function checkSymbol(e){
     }else if (opS == false && symbolType== 'dot' && !first.includes('.')){
       return{
         ...prev,
-        firstNumber: !first == "" ? first + e.target.innerHTML : "0" + e.target.innerHTML,
+        firstNumber: !first == "" ? first + e.target.innerHTML : "0.",
         firstNumberSwitch: true
       }
     }else if (opS == false && symbolType== 'dot' && first.includes('.')){
@@ -63,7 +63,8 @@ function checkSymbol(e){
     }else if (opS == true && symbolType== 'dot' && !second.includes('.')){
       return{
         ...prev,
-        secondNumber: !second == ""? second + e.target.innerHTML : "0" + e.target.innerHTML
+        secondNumber: !second == ""? second + e.target.innerHTML : "0.",
+        secondNumberSwitch: true
       }
     }else if (opS == true && symbolType== 'dot' && second.includes('.')){
       return{
@@ -108,13 +109,9 @@ function checkSymbol(e){
   } else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
     
       let num1 = parseFloat(first) 
-      let num2 =  ()=>{if(second == "0."){
-        console.log("working")
-        return parseFloat("0")
-      }}
+      let num2 =  second == "0."? 0 : parseFloat(second)
       let evaluate = sum()
       function sum (){
-        console.log("app js:"+ first)
         if(op == '+'){
           return num1 + num2
         }else if(op == '-'){
