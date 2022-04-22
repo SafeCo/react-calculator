@@ -138,8 +138,10 @@ function checkSymbol(e){
 
   return (
     <div id='container'>
+     <div id='calculator'>
       <Display displayFigure={figure} />
       <Keypad keyPress={checkSymbol} />
+     </div>
     </div>
   )
 }
