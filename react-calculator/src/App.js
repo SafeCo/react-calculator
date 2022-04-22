@@ -92,12 +92,15 @@ function checkSymbol(e){
         secondNumber:"", 
         secondNumberSwitch: false,
         result: "0",
+        previousOperation: "",
+        currentOperation: ""
       }
   }else if(symbolType== 'delete'){
     if(!second == ""){
       return{
         ...prev,
-        secondNumber: second.slice(0, second.length - 1)
+        secondNumber: second.slice(0, second.length - 1),
+        currentOperation:second.slice(0, second.length - 1)
       }
     }else if(!op == ""){
       return{
@@ -108,14 +111,19 @@ function checkSymbol(e){
     }else if(!first == ""){
       return{
         ...prev,
-        firstNumber: first.slice(0, first.length - 1)
+        firstNumber: first.slice(0, first.length - 1),
+        currentOperation: first.slice(0, first.length - 1)
       }
     }else{
       return{
         ...prev
       }
     }
-  } else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
+  } else if(firstS == false || opS == false || secondS == false && symbolType == 'equals'){
+    return{
+      ...prev
+    }
+  }else if (firstS == true && opS == true && secondS == true && symbolType == 'equals'){
     
       let num1 = parseFloat(first) 
       let num2 =  second == "0."? 0 : parseFloat(second)
