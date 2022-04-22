@@ -29,7 +29,19 @@ function checkSymbol(e){
     let cO = prev.currentOperation
     let pO = prev.previousOperation
 
-    if(opS == false && symbolType == 'number'){
+    if(symbolType == 'operand' && prev.result.includes('') == false ){
+      console.log("working")
+      return{
+        ...prev,
+        firstNumberSwitch: true,
+        operand: e.target.innerHTML,
+        operandState: true,
+        previousOperation: prev.result + e.target.innerHTML,
+        currentOperation:"",
+        result: ""
+      }
+
+    }else if(opS == false && symbolType == 'number'){
       return{
         ...prev,
           firstNumber: first + e.target.innerHTML,
@@ -48,6 +60,7 @@ function checkSymbol(e){
         ...prev,
       }
     }else if (opS == false && symbolType == 'operand' && firstS == false){
+      console.log("operand block")
       return{
         ...prev,
       }
@@ -113,13 +126,10 @@ function checkSymbol(e){
         ...prev,
         firstNumber: first.slice(0, first.length - 1),
         currentOperation: first.slice(0, first.length - 1)
+        }
       }
-    }else{
-      return{
-        ...prev
-      }
-    }
-  } else if(firstS == false || opS == false || secondS == false && symbolType == 'equals'){
+    } else if(firstS == false || opS == false || secondS == false && symbolType == 'equals'){
+    console.log("equal block")
     return{
       ...prev
     }
@@ -146,7 +156,7 @@ function checkSymbol(e){
         operandState: false,
         secondNumber:"", 
         secondNumberSwitch: false,
-        result: evaluate,
+        result: toString(evaluate),
         currentOperation: evaluate
       }
     }
@@ -154,9 +164,11 @@ function checkSymbol(e){
  
 }
 
+
   return (
     <div id='container'>
      <div id='calculator'>
+      <h1>Calculator</h1>
       <Display displayFigure={figure} />
       <Keypad keyPress={checkSymbol} />
      </div>
