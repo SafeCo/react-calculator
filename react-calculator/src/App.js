@@ -26,18 +26,22 @@ function checkSymbol(e){
     let secondS = prev.secondNumberSwitch
     let op = prev.operand
     let opS = prev.operandState
+    let cO = prev.currentOperation
+    let pO = prev.previousOperation
 
     if(opS == false && symbolType == 'number'){
       return{
         ...prev,
           firstNumber: first + e.target.innerHTML,
-          firstNumberSwitch: true
+          firstNumberSwitch: true,
+          currentOperation: first + e.target.innerHTML
       }
     }else if (opS == false && symbolType== 'dot' && !first.includes('.')){
       return{
         ...prev,
         firstNumber: !first == "" ? first + e.target.innerHTML : "0.",
-        firstNumberSwitch: true
+        firstNumberSwitch: true,
+        currentOperation: !first == "" ? first + e.target.innerHTML : "0."
       }
     }else if (opS == false && symbolType== 'dot' && first.includes('.')){
       return{
@@ -52,19 +56,24 @@ function checkSymbol(e){
         ...prev,
           firstNumber: first == "0."? "0": first,
           operand: e.target.innerHTML,
-          operandState: true
+          operandState: true,
+          previousOperation: cO + e.target.innerHTML,
+          currentOperation: ""
+
       }
     } else if (opS == true && symbolType == 'number'){
       return{
         ...prev,
           secondNumber: second + e.target.innerHTML,
-          secondNumberSwitch:true
+          secondNumberSwitch:true,
+          currentOperation: second + e.target.innerHTML
       }
     }else if (opS == true && symbolType== 'dot' && !second.includes('.')){
       return{
         ...prev,
         secondNumber: !second == ""? second + e.target.innerHTML : "0.",
-        secondNumberSwitch: true
+        secondNumberSwitch: true,
+        currentOperation: !second == ""? second + e.target.innerHTML : "0."
       }
     }else if (opS == true && symbolType== 'dot' && second.includes('.')){
       return{
@@ -130,6 +139,7 @@ function checkSymbol(e){
         secondNumber:"", 
         secondNumberSwitch: false,
         result: evaluate,
+        currentOperation: evaluate
       }
     }
   })
