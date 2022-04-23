@@ -10,9 +10,9 @@ const [figure, setFigure] = React.useState({
   operandState: false,
   secondNumber:"", 
   secondNumberSwitch: false,
-  result:"0",
+  result:"",
   resultSwitch: false,
-  currentOperation: "" ,
+  currentOperation: "0" ,
   previousOperation: "",
 });
 
@@ -176,11 +176,11 @@ function checkSymbol(e){
 
   return (
     <div id='container'>
-     <div id='calculator'>
-      <h1>Calculator</h1>
-      <Display displayFigure={figure} />
-      <Keypad keyPress={checkSymbol} />
-     </div>
+      <h1 id='title'>Calculator App</h1>
+      <div id='calculator'>
+        <Display displayFigure={figure} />
+        <Keypad buttonPress={checkSymbol} />
+      </div>
     </div>
   )
 }
