@@ -39,7 +39,8 @@ function checkSymbol(e){
         operand: e.target.innerHTML,
         operandState: true,
         previousOperation: prev.result + e.target.innerHTML,
-        currentOperation:""
+        currentOperation:"",
+        resultSwitch:false
       }
 
     }else if(opS == false && symbolType == 'number'){
@@ -106,6 +107,7 @@ function checkSymbol(e){
         secondNumber:"", 
         secondNumberSwitch: false,
         result: "0",
+        resultSwitch: false,
         previousOperation: "",
         currentOperation: ""
       }
@@ -115,6 +117,10 @@ function checkSymbol(e){
         ...prev,
         secondNumber: second.slice(0, second.length - 1),
         currentOperation:second.slice(0, second.length - 1)
+      }
+    }else if(rS == true && symbolType == 'delete'){
+      return{
+        ...prev
       }
     }else if(!op == ""){
       return{
