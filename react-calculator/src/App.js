@@ -11,6 +11,7 @@ const [figure, setFigure] = React.useState({
   secondNumber:"", 
   secondNumberSwitch: false,
   result:"0",
+  resultSwitch: false,
   currentOperation: "" ,
   previousOperation: "",
 });
@@ -28,17 +29,17 @@ function checkSymbol(e){
     let opS = prev.operandState
     let cO = prev.currentOperation
     let pO = prev.previousOperation
-
-    if(symbolType == 'operand' && prev.result.includes('') == false ){
-      console.log("working")
+    let rS = prev.resultSwitch
+    
+    if(symbolType == 'operand' && rS == true && firstS == false){
       return{
         ...prev,
+        firstNumber: prev.result,
         firstNumberSwitch: true,
         operand: e.target.innerHTML,
         operandState: true,
         previousOperation: prev.result + e.target.innerHTML,
-        currentOperation:"",
-        result: ""
+        currentOperation:""
       }
 
     }else if(opS == false && symbolType == 'number'){
@@ -156,10 +157,12 @@ function checkSymbol(e){
         operandState: false,
         secondNumber:"", 
         secondNumberSwitch: false,
-        result: toString(evaluate),
+        result: evaluate,
+        resultSwitch: true,
         currentOperation: evaluate
       }
     }
+  
   })
  
 }
